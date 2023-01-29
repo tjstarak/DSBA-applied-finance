@@ -43,7 +43,7 @@ double EuropeanOption::isBarrierHit(){
 
 	for(int i = 0; i < nInt; i++){
 		// runningSum += thisPath[i];
-		if (thisPath[i] <= barrier) {
+		if (thisPath[i] < barrier) {
 			barrierHit = 1.0;
 			break;
 		}

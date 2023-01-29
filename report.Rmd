@@ -63,9 +63,9 @@ head(result.df)
 ```
 
 Even with barrier included, the valuation of the option increases with volatility.
-This is in line with the intuition, as the upside is still unlimited. Similarly,
+This is in line with the intuition, as the upside is unlimited. Similarly,
 the longer the time to maturity, the higher the valuation, as the range of expected
-outcomes is wider and still unbounded from the top.
+outcomes is wider while unbounded from above.
 
 ```{r}
 grid %>% 

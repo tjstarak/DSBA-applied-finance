@@ -67,11 +67,11 @@ head(result.df)
     ## 5 0.44 0.55 10.2896822
     ## 6 0.54 0.55 11.8393128
 
-Even with barrier included, the valuation of the option increases with
-volatility. This is in line with the intuition, as the upside is still
+Even with a barrier included, the valuation of the option increases with
+volatility. This is in line with the intuition, as the upside is 
 unlimited. Similarly, the longer the time to maturity, the higher the
-valuation, as the range of expected outcomes is wider and still
-unbounded from the top.
+valuation, as the range of expected outcomes is wider while
+unbounded from above.
 
 ``` r
 grid %>% 

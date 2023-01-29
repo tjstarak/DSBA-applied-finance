@@ -73,9 +73,8 @@ double EuropeanOption::getEuropeanCallPrice(int nReps){
 
 	for(int i = 0; i < nReps; i++){
 		generatePath();
-		barrierHit = isBarrierHit();
-		finalPrice = thisPath[nInt - 1] * (1 - barrierHit);
-		rollingSum += (finalPrice > strike) ? (finalPrice-strike) : 0;
+		finalPrice = thisPath[nInt - 1] * (1 - isBarrierHit());
+		rollingSum += (finalPrice > strike) ? (finalPrice - strike) : 0;
 	}
 
 	return exp(-r*expiry)*rollingSum/double(nReps);

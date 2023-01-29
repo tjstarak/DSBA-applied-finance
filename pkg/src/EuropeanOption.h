@@ -19,7 +19,7 @@ public:
 
 	//methods
 	void generatePath();
-	double getArithmeticMean();
+	double isBarrierHit();
 	void printPath();
 	double getEuropeanCallPrice(int nReps);
 	double operator()(char char1, char char2, int nReps);

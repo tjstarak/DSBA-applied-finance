@@ -36,15 +36,21 @@ void EuropeanOption::generatePath(){
 }
 
 //method definition
-double EuropeanOption::getArithmeticMean(){
+double EuropeanOption::isBarrierHit(){
 
-	double runningSum = 0.0;
+	// double runningSum = 0.0;
+	double barrierHit = 0.0;
 
 	for(int i = 0; i < nInt; i++){
-		runningSum += thisPath[i];
+		// runningSum += thisPath[i];
+		if (thisPath[i] <= barrier) {
+			barrierHit = 1.0;
+			break;
+		}
 	}
 
-	return runningSum/double(nInt);
+	// return runningSum/double(nInt);
+	return barrierHit;
 }
 
 
@@ -67,8 +73,9 @@ double EuropeanOption::getEuropeanCallPrice(int nReps){
 
 	for(int i = 0; i < nReps; i++){
 		generatePath();
-		thisMean=getArithmeticMean();
-		rollingSum += (thisMean > strike) ? (thisMean-strike) : 0;
+		barrierHit = isBarrierHit();
+		finalPrice = thisPath[nInt - 1] * (1 - barrierHit);
+		rollingSum += (finalPrice > strike) ? (finalPrice-strike) : 0;
 	}
 
 	return exp(-r*expiry)*rollingSum/double(nReps);

@@ -13,7 +13,7 @@ library(tidyverse)
 
 ## Introduction
 
-The objective of this project is to examine the impact of the
+The objective of this document is to examine the impact of the
 time-to-maturity and the volatility of an underlying instrument on a
 European call option with a down-and-out barrier.
 

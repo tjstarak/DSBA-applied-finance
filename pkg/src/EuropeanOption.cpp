@@ -69,11 +69,10 @@ void EuropeanOption::printPath(){
 double EuropeanOption::getEuropeanCallPrice(int nReps){
 
 	double rollingSum = 0.0;
-	double thisMean = 0.0;
 
 	for(int i = 0; i < nReps; i++){
 		generatePath();
-		double finalPrice;
+		double finalPrice = 0;
 		finalPrice = thisPath[nInt - 1] * (1 - isBarrierHit());
 		rollingSum += (finalPrice > strike) ? (finalPrice - strike) : 0;
 	}

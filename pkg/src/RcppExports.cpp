@@ -5,9 +5,14 @@
 
 using namespace Rcpp;
 
-// getArithmeticAsianCallPrice
-double getArithmeticAsianCallPrice(int nInt, double Strike, double Spot, double Vol, double Rfr, double Expiry, int nReps);
-RcppExport SEXP _optionPricer2_getArithmeticAsianCallPrice(SEXP nIntSEXP, SEXP StrikeSEXP, SEXP SpotSEXP, SEXP VolSEXP, SEXP RfrSEXP, SEXP ExpirySEXP, SEXP nRepsSEXP) {
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
+// getEuropeanCallPrice
+double getEuropeanCallPrice(int nInt, double Strike, double Spot, double Vol, double Rfr, double Expiry, double Barrier, int nReps);
+RcppExport SEXP _optionPricer2_getEuropeanCallPrice(SEXP nIntSEXP, SEXP StrikeSEXP, SEXP SpotSEXP, SEXP VolSEXP, SEXP RfrSEXP, SEXP ExpirySEXP, SEXP BarrierSEXP, SEXP nRepsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -17,8 +22,9 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type Vol(VolSEXP);
     Rcpp::traits::input_parameter< double >::type Rfr(RfrSEXP);
     Rcpp::traits::input_parameter< double >::type Expiry(ExpirySEXP);
+    Rcpp::traits::input_parameter< double >::type Barrier(BarrierSEXP);
     Rcpp::traits::input_parameter< int >::type nReps(nRepsSEXP);
-    rcpp_result_gen = Rcpp::wrap(getArithmeticAsianCallPrice(nInt, Strike, Spot, Vol, Rfr, Expiry, nReps));
+    rcpp_result_gen = Rcpp::wrap(getEuropeanCallPrice(nInt, Strike, Spot, Vol, Rfr, Expiry, Barrier, nReps));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -34,7 +40,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_optionPricer2_getArithmeticAsianCallPrice", (DL_FUNC) &_optionPricer2_getArithmeticAsianCallPrice, 7},
+    {"_optionPricer2_getEuropeanCallPrice", (DL_FUNC) &_optionPricer2_getEuropeanCallPrice, 8},
     {"_optionPricer2_rcpp_hello_world", (DL_FUNC) &_optionPricer2_rcpp_hello_world, 0},
     {NULL, NULL, 0}
 };
